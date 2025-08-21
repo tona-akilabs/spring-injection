@@ -21,15 +21,15 @@ public class AppConfig {
         return new SimpleModel();
     }
 
-    /*@Bean
-    public Car car() {
-        return new Car(engine());
+    @Bean
+    public Car car2(@Qualifier("engine2") Engine engine2) {
+        return new Car(engine2);
     }
 
     @Bean
-    public Engine engine() {
+    public Engine engine2() {
         return new Engine();
-    }*/
+    }
 
     @PostConstruct
     public void init() {

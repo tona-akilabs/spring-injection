@@ -20,7 +20,7 @@ public class SpringInjectionApplication {
         SimpleModel simpleModel = context.getBean(SimpleModel.class);
         System.out.println("Value from SimpleModel: " + simpleModel.getValue());
 
-        Car car = context.getBean(Car.class);
+        Car car = context.getBean("car", Car.class);
         car.drive();
 
         MyService myService = context.getBean("myServiceImpl", MyService.class);
