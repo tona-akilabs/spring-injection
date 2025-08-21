@@ -6,6 +6,7 @@ import com.example.spring_injection.SimpleModel;
 import com.example.spring_injection.service.MyService;
 import com.example.spring_injection.service.MyServiceImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,14 @@ public class AppConfig {
 
     @Bean
     public SimpleModel simpleModel() {
-        return new SimpleModel();
+        SimpleModel simpleModel = new SimpleModel();
+        simpleModel.setValue("10");
+        return simpleModel;
+    }
+
+    @Bean
+    public SimpleModel simpleModel2(@Value("${value}") String value) {
+        return new SimpleModel(value);
     }
 
     @Bean

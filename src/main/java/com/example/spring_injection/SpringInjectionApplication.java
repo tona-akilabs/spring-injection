@@ -17,8 +17,10 @@ public class SpringInjectionApplication {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(AppScanConfig.class);
 
-        SimpleModel simpleModel = context.getBean(SimpleModel.class);
+        SimpleModel simpleModel = context.getBean("simpleModel", SimpleModel.class);
         System.out.println("Value from SimpleModel: " + simpleModel.getValue());
+        simpleModel = context.getBean("simpleModel2", SimpleModel.class);
+        System.out.println("Value from SimpleModel2: " + simpleModel.getValue());
 
         Car car = context.getBean("car", Car.class);
         car.drive();
