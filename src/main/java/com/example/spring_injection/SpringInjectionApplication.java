@@ -5,10 +5,12 @@ import com.example.spring_injection.config.AppConfig;
 import com.example.spring_injection.config.AppScanConfig;
 import com.example.spring_injection.service.MyService;
 import com.example.spring_injection.service.MyServiceImpl;
+import com.example.spring_injection.service.TaskService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringInjectionApplication {
 
@@ -34,6 +36,15 @@ public class SpringInjectionApplication {
         myService = context.getBean("myServiceOther", MyService.class);
         myService.performAction("Test Action");
 
+        TaskService taskService = context.getBean("emailTaskService", TaskService.class);
+        taskService.executeTask();
+        taskService = context.getBean("smsTaskService", TaskService.class);
+        taskService.executeTask();
+
+
+        /*ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Project project = context.getBean("projectBean", Project.class);
+        System.out.println("Project Info: " + project);*/
 
         // List all beans in the context
         System.out.println("Beans in the application context:");

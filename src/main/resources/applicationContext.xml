@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    
+    <!-- Define task bean -->
+    <bean id="task" class="com.example.spring_injection.Task">
+        <property name="description" value="Complete the project documentation"/>
+        <property name="dueDate" value="2023-10-31"/>
+    </bean>
+    <!-- Define project bean -->
+    <bean id="projectBean" class="com.example.spring_injection.Project" init-method="init">
+        <property name="name" value="My Project"/>
+        <property name="teamMembers">
+            <list>
+                <value>John Doe</value>
+                <value>Jane Smith</value>
+                <value>Emily Johnson</value>
+            </list>
+        </property>
+        <property name="task" ref="task"/>
+    </bean>
+
+    <!-- Define project bean -->
+    <bean id="project" class="com.example.spring_injection.Project">
+        <constructor-arg name="name" value="My Project"/>
+        <constructor-arg name="teamMembers">
+            <list>
+                <value>John Sam</value>
+                <value>Jane Smith</value>
+                <value>Emily Johnson</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg ref="task"/>
+    </bean>
+</beans>
