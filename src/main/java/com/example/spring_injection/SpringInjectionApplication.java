@@ -3,8 +3,12 @@ package com.example.spring_injection;
 
 import com.example.spring_injection.config.AppConfig;
 import com.example.spring_injection.config.AppScanConfig;
+import com.example.spring_injection.service.MyService;
+import com.example.spring_injection.service.MyServiceImpl;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 public class SpringInjectionApplication {
 
@@ -18,6 +22,23 @@ public class SpringInjectionApplication {
 
         Car car = context.getBean(Car.class);
         car.drive();
+
+        MyService myService = context.getBean("myServiceImpl", MyService.class);
+        myService.performAction("Test Action");
+
+        myService = context.getBean("myService2Impl", MyService.class);
+        myService.performAction("Test Action");
+
+        myService = context.getBean("myServiceOther", MyService.class);
+        myService.performAction("Test Action");
+
+
+        // List all beans in the context
+        System.out.println("Beans in the application context:");
+        String[] beanNames = context.getBeanDefinitionNames();
+        for (String name : beanNames) {
+            System.out.println(name);
+        }
 	}
 
 }

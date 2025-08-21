@@ -3,6 +3,9 @@ package com.example.spring_injection.config;
 import com.example.spring_injection.Car;
 import com.example.spring_injection.Engine;
 import com.example.spring_injection.SimpleModel;
+import com.example.spring_injection.service.MyService;
+import com.example.spring_injection.service.MyServiceImpl;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -31,5 +34,10 @@ public class AppConfig {
     @PostConstruct
     public void init() {
         System.out.println("AppConfig initialized.");
+    }
+
+    @Bean
+    MyService myServiceOther() {
+        return new MyServiceImpl();
     }
 }
